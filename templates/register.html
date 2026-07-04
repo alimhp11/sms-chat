@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}ثبت‌نام{% endblock %}
+{% block content %}
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div class="card" style="width:100%;max-width:400px;">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:40px;margin-bottom:12px;">✨</div>
+      <h1 style="font-size:22px;font-weight:700;">حساب جدید</h1>
+      <p style="color:var(--text-muted);font-size:14px;margin-top:6px;">سریع ثبت‌نام کن، شروع کن</p>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label style="font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block;">نام کاربری</label>
+          <input type="text" name="username" placeholder="انتخاب کن..." style="width:100%;" autofocus />
+        </div>
+        <div>
+          <label style="font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block;">رمز عبور</label>
+          <input type="password" name="password1" placeholder="••••••••" style="width:100%;" />
+        </div>
+        <div>
+          <label style="font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block;">تکرار رمز</label>
+          <input type="password" name="password2" placeholder="••••••••" style="width:100%;" />
+        </div>
+        {% if form.errors %}
+        <div style="background:#ff6b6b22;border:1px solid var(--danger);border-radius:var(--radius-sm);padding:12px;color:var(--danger);font-size:13px;">
+          {% for field in form %}{% for error in field.errors %}{{ error }}<br>{% endfor %}{% endfor %}
+        </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;">ثبت‌نام</button>
+      </div>
+    </form>
+
+    <p style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:13px;">
+      قبلاً حساب داری؟ <a href="{% url 'login' %}">وارد شو</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

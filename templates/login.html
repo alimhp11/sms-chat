@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}ورود{% endblock %}
+{% block content %}
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div class="card" style="width:100%;max-width:400px;">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:40px;margin-bottom:12px;">💬</div>
+      <h1 style="font-size:22px;font-weight:700;color:var(--text);">خوش برگشتی</h1>
+      <p style="color:var(--text-muted);font-size:14px;margin-top:6px;">برای ادامه وارد شو</p>
+    </div>
+
+    {% if form.errors %}
+    <div style="background:#ff6b6b22;border:1px solid var(--danger);border-radius:var(--radius-sm);padding:12px;margin-bottom:16px;color:var(--danger);font-size:13px;">
+      نام کاربری یا رمز اشتباهه
+    </div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label style="font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block;">نام کاربری</label>
+          <input type="text" name="username" placeholder="username" style="width:100%;" autofocus />
+        </div>
+        <div>
+          <label style="font-size:13px;color:var(--text-muted);margin-bottom:6px;display:block;">رمز عبور</label>
+          <input type="password" name="password" placeholder="••••••••" style="width:100%;" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;">ورود</button>
+      </div>
+    </form>
+
+    <p style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:13px;">
+      حساب نداری؟ <a href="{% url 'register' %}">ثبت‌نام کن</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
