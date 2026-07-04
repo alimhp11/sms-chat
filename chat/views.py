@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout
@@ -46,5 +46,6 @@ def create_room(request):
             return redirect('room',room_name=name)
     return redirect('lobby')
 
-
+def hello(request):
+    return HttpResponse("Hello, World!")
 
