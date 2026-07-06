@@ -23,6 +23,8 @@ services:
     networks:
       - mynetwork
     restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
     ports:
       - 5060:5432
