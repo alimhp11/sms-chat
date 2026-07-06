@@ -46,6 +46,5 @@ def create_room(request):
             return redirect('room',room_name=name)
     return redirect('lobby')
 
-def hello(request):
-    return HttpResponse("Hello, World!")
+
 
